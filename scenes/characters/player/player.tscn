@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://dmng0y6272h6c"]
+[gd_scene load_steps=51 format=3 uid="uid://dmng0y6272h6c"]
 
 [ext_resource type="Script" uid="uid://dss4ooq08rm3f" path="res://scenes/characters/player/player.gd" id="1_6avc5"]
 [ext_resource type="Texture2D" uid="uid://jd8wulevli6m" path="res://Assets/game/characters/basic_charakter_actions.png" id="1_t61fv"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://b8gcx3ja8sh4n" path="res://scenes/characters/player/idle_state.gd" id="4_qd3e3"]
 [ext_resource type="Script" uid="uid://dbfm1no6crbvg" path="res://scenes/characters/player/walk_state.gd" id="5_qd3e3"]
 [ext_resource type="Script" uid="uid://cgpyjtdqcemtg" path="res://scenes/characters/player/chopping_state.gd" id="7_mk55u"]
+[ext_resource type="Script" uid="uid://bsoilleh2cgnc" path="res://scenes/characters/player/tilling_state.gd" id="8_xuses"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hss88"]
 atlas = ExtResource("1_t61fv")
@@ -265,7 +266,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tebod")
 }],
-"loop": true,
+"loop": false,
 "name": &"tilling_front",
 "speed": 3.0
 }, {
@@ -276,7 +277,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3hnlq")
 }],
-"loop": true,
+"loop": false,
 "name": &"tilling_left",
 "speed": 3.0
 }, {
@@ -287,7 +288,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_u6wme")
 }],
-"loop": true,
+"loop": false,
 "name": &"tilling_right",
 "speed": 3.0
 }, {
@@ -298,7 +299,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2v4cy")
 }],
-"loop": true,
+"loop": false,
 "name": &"trilling_back",
 "speed": 3.0
 }, {
@@ -396,12 +397,12 @@ radius = 8.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_6avc5")
-current_tool = 1
+current_tool = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_omk8d")
-animation = &"idle_back"
+animation = &"trilling_back"
 autoplay = "idle_front"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -424,5 +425,10 @@ animated_sprite_2d = NodePath("../../AnimatedSprite2D")
 
 [node name="Chopping" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animated_sprite_2d")]
 script = ExtResource("7_mk55u")
+player = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+
+[node name="Tilling" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animated_sprite_2d")]
+script = ExtResource("8_xuses")
 player = NodePath("../..")
 animated_sprite_2d = NodePath("../../AnimatedSprite2D")
