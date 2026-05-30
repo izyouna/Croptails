@@ -440,10 +440,11 @@ script = ExtResource("8_xuses")
 player = NodePath("../..")
 animated_sprite_2d = NodePath("../../AnimatedSprite2D")
 
-[node name="Watering" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animated_sprite_2d")]
+[node name="Watering" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animated_sprite_2d", "hit_comonent_collision_shape")]
 script = ExtResource("9_42irl")
 player = NodePath("../..")
 animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+hit_comonent_collision_shape = NodePath("../../HitComponent/HitComponentCollisionShape2D")
 
 [node name="HitComponent" parent="." instance=ExtResource("10_3xnwo")]
 
